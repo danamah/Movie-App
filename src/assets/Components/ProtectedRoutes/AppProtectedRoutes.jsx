@@ -6,9 +6,10 @@ export default function AppProtectedRoutes({children}) {
     const {token} = useContext(authContext)
     const navigate = useNavigate()
     useEffect(()=>{
-        if(!token){
-            navigate("/login")
-        }
+        // temporarily disabled to allow access without login (screenshots) — re-enable before submitting
+        // if(!token){
+        //     navigate("/login")
+        // }
     },[token])
   return (
     <>

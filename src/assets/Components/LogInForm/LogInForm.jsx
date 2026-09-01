@@ -11,6 +11,12 @@ import { FaEyeSlash } from "react-icons/fa";
 import { loginSchema } from "../lib/schema/loginSchema";
 import { authContext } from "../Context/AuthContextProvider"
 
+const inputClassNames = {
+    label: "text-gray-300 group-data-[filled-within=true]:text-gray-300",
+    input: "text-white",
+    inputWrapper: "bg-gray-700 rounded-2xl data-[hover=true]:bg-gray-700 group-data-[focus=true]:bg-gray-700",
+}
+
 export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
@@ -82,10 +88,10 @@ export default function LoginForm() {
                     <h1 className="my-2 text-white">Welcome!👋</h1>
                     <p className="text-white">SignUp now and join our community</p>
                     <form className="space-y-2.5" onSubmit={handleSubmit(onSubmit)}>
-                        <Input className="bg-gray-700 text-white rounded-2xl" {...register("email")} label="Email" type="email"
+                        <Input classNames={inputClassNames} {...register("email")} label="Email" type="email"
                             errorMessage={errors.email?.message} isInvalid={Boolean(errors.email)}
                         />
-                        <Input className="bg-gray-700 text-white rounded-2xl" {...register("password")} label="Password" type={`${showPassword ? "text" : "password"}`}
+                        <Input classNames={inputClassNames} {...register("password")} label="Password" type={`${showPassword ? "text" : "password"}`}
                             errorMessage={errors.password?.message} isInvalid={Boolean(errors.password)}
                             endContent={showPassword ? <FaEyeSlash className="text-2xl pb-1 cursor-pointer"
                                 onClick={() => { setShowPassword(false) }} />

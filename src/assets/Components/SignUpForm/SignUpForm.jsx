@@ -9,6 +9,18 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+const inputClassNames = {
+    label: "text-gray-300 group-data-[filled-within=true]:text-gray-300",
+    input: "text-white",
+    inputWrapper: "bg-gray-700 rounded-2xl data-[hover=true]:bg-gray-700 group-data-[focus=true]:bg-gray-700",
+}
+const selectClassNames = {
+    label: "text-gray-300",
+    value: "text-white",
+    trigger: "bg-gray-700 rounded-2xl data-[hover=true]:bg-gray-700 data-[open=true]:bg-gray-700",
+    popoverContent: "bg-gray-700",
+}
+
 export default function SignUpForm() {
     const [showPassword, setShowPassword] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
@@ -75,28 +87,28 @@ export default function SignUpForm() {
                     <h1 className="my-2 text-white">Welcome!👋</h1>
                     <p className="text-white">SignUp now and join our community</p>
                     <form className="space-y-2.5" onSubmit={handleSubmit(onSubmit)}>
-                        <Input className="bg-gray-700 text-white rounded-2xl" variant="bordered" isClearable {...register("name")} label="Name" type="text"
+                        <Input classNames={inputClassNames} variant="bordered" isClearable {...register("name")} label="Name" type="text"
                             errorMessage={errors.name?.message} isInvalid={Boolean(errors.name)}
                         />
-                        <Input className="bg-gray-700 text-white rounded-2xl" {...register("email")} label="Email" type="email"
+                        <Input classNames={inputClassNames} {...register("email")} label="Email" type="email"
                             errorMessage={errors.email?.message} isInvalid={Boolean(errors.email)}
                         />
-                        <Input className="bg-gray-700 text-white rounded-2xl" {...register("password")} label="Password" type={`${showPassword ? "text" : "password"}`}
+                        <Input classNames={inputClassNames} {...register("password")} label="Password" type={`${showPassword ? "text" : "password"}`}
                             errorMessage={errors.password?.message} isInvalid={Boolean(errors.password)}
                             endContent={showPassword ? <FaEyeSlash className="text-2xl pb-1 cursor-pointer"
                                 onClick={() => { setShowPassword(false) }} />
                                 : <FaEye className="text-2xl pb-1 cursor-pointer" onClick={() => { setShowPassword(true) }} />}
                         />
-                        <Input className="bg-gray-700 text-white rounded-2xl" {...register("rePassword")} label="Repassword" type={`${showPassword ? "text" : "password"}`}
+                        <Input classNames={inputClassNames} {...register("rePassword")} label="Repassword" type={`${showPassword ? "text" : "password"}`}
                             errorMessage={errors.rePassword?.message} isInvalid={Boolean(errors.rePassword)}
                             endContent={showPassword ? <FaEyeSlash className="text-2xl pb-1 cursor-pointer" onClick={() => { setShowPassword(false) }} />
                                 : <FaEye className="text-2xl pb-1 cursor-pointer" onClick={() => { setShowPassword(true) }} />}
                         />
                         <div className="flex justify-between gap-2 items-center">
                             {/* <DatePicker {...register("dateOfBirth")} className="" label="Birth date" errorMessage={errors.dateOfBirth?.message} isInvalid={Boolean(errors.dateOfBirth)} /> */}
-                            <Input className="bg-gray-700 text-white rounded-2xl" {...register("dateOfBirth")} label="Birth date" type="date"
+                            <Input classNames={inputClassNames} {...register("dateOfBirth")} label="Birth date" type="date"
                                 errorMessage={errors.dateOfBirth?.message} isInvalid={Boolean(errors.dateOfBirth)} />
-                            <Select {...register("gender")} className="max-w-xs bg-gray-700 text-white rounded-2xl" label="gender" errorMessage={errors.gender?.message} isInvalid={Boolean(errors.gender)}>
+                            <Select {...register("gender")} classNames={selectClassNames} className="max-w-xs" label="gender" errorMessage={errors.gender?.message} isInvalid={Boolean(errors.gender)}>
                                 <SelectItem className="text-white" key={"male"}>Male</SelectItem>
                                 <SelectItem className=" text-white" key={"female"}>Female</SelectItem>
                             </Select>
